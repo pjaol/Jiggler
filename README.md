@@ -8,7 +8,7 @@
 
 **Jiggler** is a simple menu bar application that prevents your Mac from going to sleep, activating the screensaver, or dimming the display. Perfect for presentations, long downloads, video rendering, or any task where you need your Mac to stay awake without changing system settings.
 
-## ✨ Features
+## Features
 
 ### Three Jiggle Modes
 
@@ -36,7 +36,7 @@ Jiggler can automatically enable/disable based on:
 - **Overlay Window** - Optional visual indicator when jiggling is active
 - **Configurable Settings** - Adjust jiggle interval, distance, and conditions
 
-## 📥 Installation
+## Installation
 
 ### Download
 
@@ -48,7 +48,7 @@ Choose either:
 
 ### Important: First-Time Launch
 
-⚠️ **This app is unsigned**, so macOS Gatekeeper will block it on first launch.
+**This app is unsigned**, so macOS Gatekeeper will block it on first launch.
 
 **For DMG:**
 1. Download and open `Jiggler.dmg`
@@ -77,7 +77,7 @@ Jiggler needs **Accessibility permissions** to control the mouse:
 3. Toggle it **ON**
 4. Restart Jiggler
 
-## 🚀 Usage
+## Usage
 
 ### Basic Usage
 
@@ -105,13 +105,13 @@ Need Jiggler to run for a specific duration?
 3. The icon turns **red** to indicate timed mode
 4. Jiggler will automatically quit when time expires
 
-## 🖥️ System Requirements
+## System Requirements
 
 - macOS 10.15 (Catalina) or later
 - Apple Silicon (M1/M2/M3) and Intel Macs supported
 - Tested on macOS 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma)
 
-## 🔧 Building from Source
+## Building from Source
 
 ### Prerequisites
 
@@ -140,14 +140,14 @@ The built app will be in:
 ~/Library/Developer/Xcode/DerivedData/Jiggler-*/Build/Products/Release/Jiggler.app
 ```
 
-## 📖 Documentation
+## Documentation
 
 - **[MODERNIZATION.md](MODERNIZATION.md)** - Recent changes and improvements
 - **[CODE_SIGNING.md](CODE_SIGNING.md)** - How to sign and notarize the app
 - **[CONTRIBUTING.md](.github/CONTRIBUTING.md)** - Guidelines for contributors
 - **[AUTOMATION_SUMMARY.md](AUTOMATION_SUMMARY.md)** - CI/CD automation details
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! This project now has automated builds and PR validation.
 
@@ -166,7 +166,7 @@ Our CI will automatically:
 
 See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for detailed guidelines.
 
-## 🐛 Known Issues & Limitations
+## Known Issues & Limitations
 
 - **Unsigned Build:** Requires right-click → Open on first launch (Gatekeeper warning)
 - **Accessibility Required:** Needs accessibility permissions to function
@@ -174,14 +174,14 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for detailed guidelines.
 
 See the [issue tracker](https://github.com/pjaol/Jiggler/issues) for more details.
 
-## 📝 Changelog
+## Changelog
 
 ### Version 1.11 (March 2026)
-- ✅ **Fixed:** Zen jiggle mode compatibility with macOS 26 (Tahoe)
-- ✅ **Updated:** Power management API to modern `IOPMAssertionDeclareUserActivity()`
-- ✅ **Removed:** Deprecated `UpdateSystemActivity()` calls
-- ✅ **Added:** GitHub Actions CI/CD automation
-- ✅ **Improved:** Documentation and build processes
+- **Fixed:** Zen jiggle mode compatibility with macOS 26 (Tahoe)
+- **Updated:** Power management API to modern `IOPMAssertionDeclareUserActivity()`
+- **Removed:** Deprecated `UpdateSystemActivity()` calls
+- **Added:** GitHub Actions CI/CD automation
+- **Improved:** Documentation and build processes
 
 ### Version 1.10 (November 2025)
 - General code and logic cleanup
@@ -189,7 +189,7 @@ See the [issue tracker](https://github.com/pjaol/Jiggler/issues) for more detail
 
 [Full changelog](https://github.com/pjaol/Jiggler/releases)
 
-## 📜 License
+## License
 
 Copyright © 2025 Ben Haller. All rights reserved.
 
@@ -197,22 +197,22 @@ Jiggler is free software licensed under the [GNU General Public License v3.0](LI
 
 You can redistribute it and/or modify it under the terms of the GPL v3 as published by the Free Software Foundation. See the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## Links
 
 - **Original Project:** [bhaller/Jiggler](https://github.com/bhaller/Jiggler)
 - **Home Page:** [sticksoftware.com/software/Jiggler.html](http://www.sticksoftware.com/software/Jiggler.html)
 - **Stick Software:** [www.sticksoftware.com](http://www.sticksoftware.com)
 
-## 💡 About
+## About
 
 Jiggler is a [Stick Software](http://www.sticksoftware.com) product. If you like it, please check out their other software!
 
 This fork includes modern CI/CD automation, macOS 26 compatibility fixes, and improved documentation. The core Jiggler functionality and user experience remain unchanged.
 
-## ⭐ Show Your Support
+## Show Your Support
 
 If Jiggler helps you, consider:
-- Starring this repository ⭐
+- Starring this repository
 - Contributing bug fixes or features
 - Reporting issues to help improve it
 - Sharing it with others who might find it useful

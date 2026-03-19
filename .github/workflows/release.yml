@@ -101,16 +101,46 @@ jobs:
         body: |
           ## Jiggler ${{ steps.version.outputs.version }}
 
-          ### Installation
-          - Download either the DMG or ZIP file
-          - For DMG: Open and drag Jiggler to Applications
-          - For ZIP: Extract and move Jiggler.app to Applications
+          ### What's New
 
-          ### Changes
-          See the commit history for details.
+          ✅ See commit history for full details of changes in this release.
+
+          ### Installation
+
+          #### ⚠️ Important: First-Time Installation
+
+          This app is **unsigned**, so macOS Gatekeeper will block it on first launch. This is normal and safe - follow these steps:
+
+          **For DMG:**
+          1. Download `Jiggler.dmg`
+          2. Open the DMG and drag Jiggler to Applications
+          3. **Right-click** on Jiggler.app (in Applications folder)
+          4. Select **"Open"** from the menu
+          5. Click **"Open"** in the security dialog
+          6. After this first time, you can launch it normally
+
+          **For ZIP:**
+          1. Download and extract `Jiggler.zip`
+          2. Move Jiggler.app to Applications
+          3. **Right-click** on Jiggler.app
+          4. Select **"Open"** from the menu
+          5. Click **"Open"** in the security dialog
+
+          **Why do I need to do this?**
+          This build is not code-signed with an Apple Developer certificate. The app is safe and works perfectly - you just need to tell macOS you trust it on first launch by right-clicking instead of double-clicking.
 
           ### System Requirements
           - macOS 10.15 or later
-          - Apple Silicon and Intel supported
+          - Apple Silicon and Intel Macs supported
+
+          ### Permissions
+
+          Jiggler requires **Accessibility permissions** to function:
+          - System Settings → Privacy & Security → Accessibility
+          - Enable Jiggler in the list
+
+          ### Feedback
+
+          Report issues at: https://github.com/${{ github.repository }}/issues
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

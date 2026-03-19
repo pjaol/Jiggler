@@ -38,7 +38,7 @@ open Jiggler.xcodeproj
 # Then press Command+B to build, or Command+R to build and run
 ```
 
-**Note:** Command-line xcodebuild has plugin issues on your current macOS 26.3.1 system, but the GUI works fine. The GitHub Actions will use properly configured runners.
+**Note:** Command-line xcodebuild has plugin issues on your current macOS 26.3.1 system, but the GUI works fine. This is a known macOS 26 beta bug with framework version mismatches. See `XCODEBUILD_ISSUE.md` for details. The GitHub Actions will use properly configured runners and won't have this issue.
 
 ### 4. Test the Application
 

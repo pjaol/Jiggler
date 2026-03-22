@@ -68,16 +68,18 @@ double JigglerIdleTime(void)
 @end
 
 
-@implementation AppDelegate {
-	IOPMAssertionID _userActivityAssertion;
-}
+@implementation AppDelegate
 
 #pragma mark Launch and Termination
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-	
+
+	// Initialize power management assertion IDs
+	_userActivityAssertion = kIOPMNullAssertionID;
+	_displaySleepAssertion = kIOPMNullAssertionID;
+
 	//[self checkJiggleTime];
 	
 	// We check with a repeating timer, to avoid issues with rescheduling and such.
@@ -211,16 +213,20 @@ double JigglerIdleTime(void)
 
 - (void)undeclareUserActivity
 {
-	// Release any previous assertion made by -declareUserActivity.
+	// Release any previous assertions made by -declareUserActivity.
 	if (_userActivityAssertion != kIOPMNullAssertionID) {
 		IOPMAssertionRelease(_userActivityAssertion);
 		_userActivityAssertion = kIOPMNullAssertionID;
+	}
+	if (_displaySleepAssertion != kIOPMNullAssertionID) {
+		IOPMAssertionRelease(_displaySleepAssertion);
+		_displaySleepAssertion = kIOPMNullAssertionID;
 	}
 }
 
 - (void)declareUserActivity
 {
-	// Release any previous assertion from this method before creating a new one
+	// Release any previous assertions from this method before creating new ones
 	[self undeclareUserActivity];
 
 	// BCH 16 June 2013: This API is unofficially deprecated in favor of IOPMAssertionCreateWithName().
@@ -229,6 +235,9 @@ double JigglerIdleTime(void)
 	// BCH 2025: UpdateSystemActivity() and the previous IOPMAssertionCreateWithName() approach stopped
 	// working properly on macOS 26 (Tahoe). IOPMAssertionDeclareUserActivity() with kIOPMUserActiveLocal
 	// is now the correct API to use for Zen jiggle mode.
+	// BCH 2026: On macOS 26, screen locking is now separate from system sleep. We need to create both
+	// a user activity assertion (to prevent system sleep) and a display sleep assertion (to prevent
+	// screen locking) to fully implement Zen jiggle mode.
 
     // Create a short-lived "user is active" assertion to reset the system idle timer
     IOReturn result = IOPMAssertionDeclareUserActivity(
@@ -240,6 +249,18 @@ double JigglerIdleTime(void)
     if (result != kIOReturnSuccess) {
         NSLog(@"[Jiggler] Failed to declare user activity (IOReturn = 0x%x)", result);
     }
+
+	// Create a display sleep prevention assertion to prevent screen lock on macOS 26+
+	result = IOPMAssertionCreateWithName(
+		kIOPMAssertionTypePreventUserIdleDisplaySleep,
+		kIOPMAssertionLevelOn,
+		CFSTR("Jiggler Prevent Display Sleep"),
+		&_displaySleepAssertion
+	);
+
+	if (result != kIOReturnSuccess) {
+		NSLog(@"[Jiggler] Failed to create display sleep assertion (IOReturn = 0x%x)", result);
+	}
 }
 
 - (BOOL)isInAScreen:(NSPoint)point
